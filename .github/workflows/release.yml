@@ -63,9 +63,6 @@ jobs:
           file: target/${{ matrix.target }}/release/dd-metric
           args: ${{ matrix.upx_args }}
           strip: true
-      - name: strip binary
-        run: |
-          strip
       - uses: taiki-e/upload-rust-binary-action@v1
         with:
           bin: dd-metric
