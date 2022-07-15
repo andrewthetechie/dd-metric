@@ -1,0 +1,70 @@
+name: Tests
+
+on:
+  release:
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  CARGO_INCREMENTAL: 0
+  CARGO_NET_RETRY: 10
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: full
+  RUSTFLAGS: -D warnings
+  RUSTUP_MAX_RETRIES: 10
+
+jobs:
+  release:
+    name: ${{ matrix.target }}
+    strategy:
+      matrix:
+        include:
+          - target: aarch64-unknown-linux-gnu
+          - target: aarch64-unknown-linux-musl
+          - target: aarch64-apple-darwin
+            os: macos-11
+          - target: x86_64-unknown-linux-gnu
+          - target: x86_64-unknown-linux-musl
+          - target: x86_64-apple-darwin
+            os: macos-10.15
+          - target: x86_64-pc-windows-msvc
+            os: windows-2019
+    runs-on: ${{ matrix.os || 'ubuntu-latest' }}
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3.0.2
+      - name: Set version in Cargo.toml
+        run: |
+          export VERSION=${{ github.event.release.tag_name }}
+          sed -i "s/0.0.0/$VERSION/g" Cargo.toml
+      - uses: taiki-e/github-actions/install-rust@main
+      - name: Setup rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          target: ${{ matrix.target }}
+      - run: echo "RUSTFLAGS=${RUSTFLAGS} -C target-feature=+crt-static" >> "${GITHUB_ENV}"
+        if: endsWith(matrix.target, 'windows-msvc')
+      - name: Build target
+        uses: actions-rs/cargo@v1
+        with:
+          use-cross: true
+          command: build
+          args: --release --target ${{ matrix.target }}
+      - name: strip binary
+        run: |
+          strip target/${{ matrix.target }}/release/dd-metric
+      - uses: taiki-e/upload-rust-binary-action@v1
+        with:
+          bin: dd-metric
+          target: ${{ matrix.target }}
+          tar: all
+          zip: windows
+          include: LICENSE,README.md,CONTRIBUTING.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CARGO_PROFILE_RELEASE_CODEGEN_UNITS: 1
+          CARGO_PROFILE_RELEASE_LTO: true

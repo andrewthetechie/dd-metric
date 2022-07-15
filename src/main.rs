@@ -16,7 +16,7 @@ mod args;
 async fn main() -> Result<()> {
     let args = Args::parse();
     let lowercased_outputs = args.outputs.to_lowercase();
-    let outputs: Vec<&str> = lowercased_outputs.split(",").collect();
+    let outputs: Vec<&str> = lowercased_outputs.split(',').collect();
 
     let mut dd_api_key: String = "".to_string();
     let mut dd_api_host: String = "".to_string();
@@ -36,13 +36,13 @@ async fn main() -> Result<()> {
 
     let mut tags = vec![];
     for tag in args.tags.split(',') {
-        if tag.contains(":") {
+        if tag.contains(':') {
             let mut tag_split = tag.split(':');
             tags.push((
                 tag_split.next().unwrap().to_string(),
                 tag_split.next().unwrap().to_string(),
             ));
-        } else if tag != "" {
+        } else if !tag.is_empty() {
             eprintln!("Invalid tag format. Ignoring tag: {}", tag);
         }
     }
@@ -72,10 +72,13 @@ async fn main() -> Result<()> {
         }
     };
     match metrics.flush().await {
-        Ok(_) => Ok(println!(
-            "{} {} sent to Datadog with value {:?}",
-            args.r#type, args.name, args.value
-        )),
+        Ok(_) => {
+            println!(
+                "{} {} sent to Datadog with value {:?}",
+                args.r#type, args.name, args.value
+            );
+            Ok(())
+        }
         Err(e) => {
             eprintln!(
                 "Error sending {} {} to Datadog: {}",
