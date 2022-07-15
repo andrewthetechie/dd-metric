@@ -22,24 +22,22 @@ tokio-console = ["console-subscriber", "tokio/tracing"]
 [dependencies]
 anyhow = "~1.0"
 clap = { version = "~3.2", features = ["derive"] }
-
-tokio = { version = "~1.19", features = ["full"] }
 console-subscriber = { version = "~0.1", optional = true }
-
-# needs to be 0.18 because the dd exporter hasn't been updated to support .19
-metrics = "^0.18"
-metrics-datadog-exporter = "0.1.11"
-
 # Remove these after not testing anymore
 env_logger = "^0.9.0"
 log = "^0.4.17"
+# needs to be 0.18 because the dd exporter hasn't been updated to support .19
+metrics = "^0.18"
+metrics-datadog-exporter = "0.1.11"
+tokio = { version = "~1.19", features = ["full"] }
 
 [dev-dependencies]
+cargo-toml-lint = "^0.1.0"
 taplo-cli = "^0.6.9"
 
 [profile.release]
 strip = true      # Automatically strip symbols from the binary.
 opt-level = "z"   # Optimize for size.
+panic = "abort"
 lto = true
 codegen-units = 1
-panic = "abort"

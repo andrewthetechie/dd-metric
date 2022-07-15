@@ -37,7 +37,8 @@ jobs:
       - name: Run cargo test
         run: |
           cargo test
-      - name: TOML linter
-        uses: yisonPylkita/gh-action-toml-linter@0.1.3
+      - name: Run cargo-toml-lint
+        run: |
+          cargo-toml-lint Cargo.toml
       - name: YAML Lint
         uses: ibiqlik/action-yamllint@v3.1.0

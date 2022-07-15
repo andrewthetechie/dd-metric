@@ -22,7 +22,14 @@ repos:
         name: Toml Lint with Taplo
         description: Run taplo format on toml files
         entry: taplo format
-        pass_filenames: true
+        pass_filenames: false
+        types: [file, toml]
+        language: system
+      - id: cargo-toml-lint
+        name: Lint Cargo.toml with cargo-toml-lint
+        description: Run cargo-toml-lint format on Cargo.toml
+        entry: cargo-toml-lint Cargo.toml
+        pass_filenames: false
         types: [file, toml]
         language: system
       - id: rust-linting
