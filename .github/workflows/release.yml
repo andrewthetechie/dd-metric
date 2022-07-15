@@ -45,7 +45,7 @@ jobs:
           - target: x86_64-pc-windows-msvc
             os: windows-latest
             upx_args: -9
-            upx_strip: true
+            upx_strip: false
     runs-on: ${{ matrix.os || 'ubuntu-latest' }}
     steps:
       - name: Check out the repository
