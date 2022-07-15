@@ -35,10 +35,6 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3.0.2
-      - name: Set version in Cargo.toml
-        run: |
-          export VERSION=${{ github.event.release.tag_name }}
-          sed -i "s/0.0.0/$VERSION/g" Cargo.toml
       - uses: taiki-e/github-actions/install-rust@main
       - name: Setup rust
         uses: actions-rs/toolchain@v1
