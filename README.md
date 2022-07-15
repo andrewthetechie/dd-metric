@@ -1,2 +1,5 @@
 # dd-metric
-Rust binary that emits a metric to Datadog from cli args.
+
+Send a datadog metric via the datadog api.
+
+Builds a CLI client

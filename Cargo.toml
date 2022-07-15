@@ -1,0 +1,32 @@
+[workspace]
+resolver = "2"
+members = []
+
+[package]
+name = "dd-metric"
+version = "0.1.0"
+edition = "2021"
+authors = ["Andrew Herrington <andrew.the.techie@gmail.com>"]
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+
+# https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default = []
+tokio-console = ["console-subscriber", "tokio/tracing"]
+
+[dependencies]
+anyhow = "~1.0"
+clap = { version = "~3.2", features = ["derive"] }
+
+tokio = { version = "~1.19", features = ["full"] }
+console-subscriber = { version = "~0.1", optional = true }
+
+# needs to be 0.18 because the dd exporter hasn't been updated to support .19
+metrics = "^0.18"
+metrics-datadog-exporter = "0.1.11"
+
+# Remove these after not testing anymore
+env_logger = "^0.9.0"
+log = "^0.4.17"
