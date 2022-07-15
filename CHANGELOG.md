@@ -7,9 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.1.0 (2022-07-15)
 
-
 ### Features
 
-* initial commit ([d552c74](https://github.com/andrewthetechie/dd-metric/commit/d552c741bb9287e2d40c35382e8e92bbe9d7defd))
+- initial commit ([d552c74](https://github.com/andrewthetechie/dd-metric/commit/d552c741bb9287e2d40c35382e8e92bbe9d7defd))
 
 ## [Unreleased]
