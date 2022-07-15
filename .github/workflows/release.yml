@@ -22,15 +22,22 @@ jobs:
       matrix:
         include:
           - target: aarch64-unknown-linux-gnu
+            upx_args: --best --lzma
           - target: aarch64-unknown-linux-musl
+            upx_args: --best --lzma
+          - target: x86_64-unknown-linux-gnu
+            upx_args: --best --lzma
+          - target: x86_64-unknown-linux-musl
+            upx_args: --best --lzma
           - target: aarch64-apple-darwin
             os: macos-latest
-          - target: x86_64-unknown-linux-gnu
-          - target: x86_64-unknown-linux-musl
+            upx_args: --best
           - target: x86_64-apple-darwin
             os: macos-latest
+            upx_args: --best
           - target: x86_64-pc-windows-msvc
             os: windows-latest
+            upx_args: -9
     runs-on: ${{ matrix.os || 'ubuntu-latest' }}
     steps:
       - name: Check out the repository
@@ -49,10 +56,16 @@ jobs:
         with:
           use-cross: true
           command: build
-          args: --release --target ${{ matrix.target }}
+          args: --release --target ${{ matrix.target }} --locked
+      - name: Compress binaries
+        uses: svenstaro/upx-action@v2
+        with:
+          file: target/${{ matrix.target }}/release/dd-metric
+          args: ${{ matrix.upx_args }}
+          strip: true
       - name: strip binary
         run: |
-          strip target/${{ matrix.target }}/release/dd-metric
+          strip
       - uses: taiki-e/upload-rust-binary-action@v1
         with:
           bin: dd-metric
@@ -62,5 +75,3 @@ jobs:
           include: LICENSE,README.md,CONTRIBUTING.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CARGO_PROFILE_RELEASE_CODEGEN_UNITS: 1
-          CARGO_PROFILE_RELEASE_LTO: true

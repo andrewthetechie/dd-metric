@@ -36,3 +36,10 @@ log = "^0.4.17"
 
 [dev-dependencies]
 cargo-spellcheck = "^0.11.0"
+
+[profile.release]
+strip = true  # Automatically strip symbols from the binary.
+opt-level = "z"  # Optimize for size.
+lto = true
+codegen-units = 1
+panic = "abort"
