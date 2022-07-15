@@ -4,11 +4,14 @@ members = []
 
 [package]
 name = "dd-metric"
-version = "0.1.0"
+version = "0.0.0"
 edition = "2021"
 authors = ["Andrew Herrington <andrew.the.techie@gmail.com>"]
+description = "Submit metrics to datadog via the Datadog API"
+repository = "https://github.com/andrewthetechie/dd-metric"
 readme = "README.md"
-license = "MIT OR Apache-2.0"
+license = "MIT"
+keywords = ['datadog', 'metrics', 'cli']
 
 # https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -30,3 +33,6 @@ metrics-datadog-exporter = "0.1.11"
 # Remove these after not testing anymore
 env_logger = "^0.9.0"
 log = "^0.4.17"
+
+[dev-dependencies]
+cargo-spellcheck = "^0.11.0"
