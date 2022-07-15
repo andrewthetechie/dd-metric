@@ -39,6 +39,7 @@ jobs:
           cargo test
       - name: Run cargo-toml-lint
         run: |
+          cargo install cargo-toml-lint
           cargo-toml-lint Cargo.toml
       - name: YAML Lint
         uses: ibiqlik/action-yamllint@v3.1.0
