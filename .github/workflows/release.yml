@@ -66,9 +66,17 @@ jobs:
           command: build
           args: --release --target ${{ matrix.target }} --locked
       - name: Compress binaries
+        if: endsWith(matrix.target, 'windows-msvc') == false
         uses: svenstaro/upx-action@v2
         with:
           file: target/${{ matrix.target }}/release/dd-metric
+          args: ${{ matrix.upx_args }}
+          strip: ${{ matrix.upx_strip }}
+      - name: Compress binaries windows
+        if: endsWith(matrix.target, 'windows-msvc')
+        uses: svenstaro/upx-action@v2
+        with:
+          file: D:\a\dd-metric\dd-metric
           args: ${{ matrix.upx_args }}
           strip: ${{ matrix.upx_strip }}
       - uses: taiki-e/upload-rust-binary-action@v1
