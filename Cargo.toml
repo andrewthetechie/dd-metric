@@ -13,8 +13,6 @@ readme = "README.md"
 license = "MIT"
 keywords = ['datadog', 'metrics', 'cli']
 
-# https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [features]
 default = []
 tokio-console = ["console-subscriber", "tokio/tracing"]
