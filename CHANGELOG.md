@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.2](https://github.com/andrewthetechie/dd-metric/compare/v0.2.1...v0.2.2) (2022-07-20)
+
+
+### Bug Fixes
+
+* bump version for clap from 3.2.12 to 3.2.13 ([17197ab](https://github.com/andrewthetechie/dd-metric/commit/17197ab48d01f5208220d88cdc8ad55af9b870ee))
+
 ## [0.2.1](https://github.com/andrewthetechie/dd-metric/compare/v0.2.0...v0.2.1) (2022-07-16)
 
 
