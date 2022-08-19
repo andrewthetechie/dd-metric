@@ -58,7 +58,7 @@ async fn main() -> Result<()> {
         .api_host(dd_api_host)
         .write_to_stdout(outputs.contains(&"stdout"))
         .write_to_api(outputs.contains(&"api"), Some(dd_api_key.to_string()))
-        .build()
+        .build()?
         .install()
         .unwrap();
 
