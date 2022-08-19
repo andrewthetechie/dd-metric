@@ -4,7 +4,7 @@ members = []
 
 [package]
 name = "dd-metric"
-version = "0.2.2"
+version = "0.3.0"
 edition = "2021"
 authors = ["Andrew Herrington <andrew@💻.kz>"]
 description = "Submit metrics to datadog via the Datadog API"
