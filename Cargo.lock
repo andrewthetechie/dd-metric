@@ -843,15 +843,14 @@ dependencies = [
 
 [[package]]
 name = "metrics-datadog-exporter"
-version = "0.1.12"
+version = "0.1.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "142528390a34ca89e42ff953d8ca9f558a1c91c366e580c1f5d7b678866f4d60"
+checksum = "0676b356073e50dc379fa2eb304a77c423d5162706cace2237bfa110dbd39bc9"
 dependencies = [
  "chrono",
  "flate2",
  "futures",
  "itertools",
- "log",
  "metrics",
  "metrics-util",
  "parking_lot",
@@ -863,6 +862,7 @@ dependencies = [
  "thiserror",
  "tokio",
  "tokio_schedule",
+ "tracing",
 ]
 
 [[package]]
