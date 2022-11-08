@@ -27,7 +27,7 @@ log = "^0.4.17"
 # needs to be 0.18 because the dd exporter hasn't been updated to support .19
 metrics = "^0.20"
 metrics-datadog-exporter = "0.1.13"
-tokio = { version = "~1.20", features = ["rt", "rt-multi-thread", "macros"] }
+tokio = { version = "~1.21", features = ["rt", "rt-multi-thread", "macros"] }
 
 
 [profile.release]
