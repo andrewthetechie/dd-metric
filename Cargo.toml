@@ -23,7 +23,7 @@ clap = { version = "~4.0", features = ["derive"] }
 console-subscriber = { version = "~0.1", optional = true }
 # Remove these after not testing anymore
 env_logger = "^0.10.0"
-log = "^0.4.17"
+log = "^0.4.18"
 # needs to be 0.18 because the dd exporter hasn't been updated to support .19
 metrics = "^0.20"
 metrics-datadog-exporter = "0.1.13"
