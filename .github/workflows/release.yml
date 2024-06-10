@@ -127,11 +127,11 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ github.repository}}
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: dd-metric-amd64
           path: dd-metric-amd64
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: dd-metric-arm64
           path: dd-metric-arm64
